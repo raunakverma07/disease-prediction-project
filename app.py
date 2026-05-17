@@ -58,6 +58,8 @@ if menu == "🏠 Home":
 
     st.markdown("## Machine Learning Based Healthcare Prediction Web Application")
 
+    st.caption("Made by Raunak • ML Enthusiast • Developed for Learning and Educational Purposes")
+
     # Main Image
     st.image("medical_banner.jpg", use_container_width=True)
 
@@ -157,4 +159,126 @@ elif menu == "🩸 Diabetes Prediction":
         insulin = st.number_input("Insulin", min_value=0.0)
         bmi = st.number_input("BMI", min_value=0.0)
         dpf = st.number_input("Diabetes Pedigree Function", min_value=0.0)
-        age = st.number_input("Age", min_va
+        age = st.number_input("Age", min_value=0.0)
+
+    if st.button("Predict Diabetes"):
+
+        input_data = [[
+            pregnancies,
+            glucose,
+            blood_pressure,
+            skin_thickness,
+            insulin,
+            bmi,
+            dpf,
+            age
+        ]]
+
+        scaled_data = diabetes_scaler.transform(input_data)
+
+        prediction = diabetes_model.predict(scaled_data)
+
+        st.markdown("---")
+
+        if prediction[0] == 1:
+            st.error("⚠️ High Possibility of Diabetes Detected")
+        else:
+            st.success("✅ Low Risk of Diabetes")
+
+# ==========================================
+# BREAST CANCER PREDICTION
+# ==========================================
+
+elif menu == "🎗️ Breast Cancer Prediction":
+
+    st.title("🎗️ Breast Cancer Prediction")
+
+    st.info(
+        "Breast cancer occurs when cells in the breast grow uncontrollably. "
+        "This ML model predicts whether the tumor condition is malignant or benign."
+    )
+
+    st.markdown("### 📊 Model Accuracy : 95.61%")
+
+    st.markdown("---")
+
+    st.subheader("Enter Tumor Details")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        radius_mean = st.number_input("Radius Mean", min_value=0.0)
+        texture_mean = st.number_input("Texture Mean", min_value=0.0)
+        perimeter_mean = st.number_input("Perimeter Mean", min_value=0.0)
+
+    with col2:
+        area_mean = st.number_input("Area Mean", min_value=0.0)
+        smoothness_mean = st.number_input("Smoothness Mean", min_value=0.0)
+
+    if st.button("Predict Breast Cancer"):
+
+        input_data = [[
+            radius_mean,
+            texture_mean,
+            perimeter_mean,
+            area_mean,
+            smoothness_mean
+        ]]
+
+        prediction = breast_cancer_model.predict(input_data)
+
+        st.markdown("---")
+
+        if prediction[0] == 1:
+            st.error("⚠️ Malignant Tumor Detected")
+        else:
+            st.success("✅ Benign Tumor Detected")
+
+# ==========================================
+# HEART DISEASE PREDICTION
+# ==========================================
+
+elif menu == "❤️ Heart Disease Prediction":
+
+    st.title("❤️ Heart Disease Prediction")
+
+    st.info(
+        "Heart disease includes several conditions that affect heart health. "
+        "This prediction model analyzes health indicators to estimate heart disease risk."
+    )
+
+    st.markdown("### 📊 Model Accuracy : 94.09%")
+
+    st.markdown("---")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        age = st.number_input("Age", min_value=0.0)
+        bmi = st.number_input("BMI", min_value=0.0)
+        systolic_bp = st.number_input("Systolic Blood Pressure", min_value=0.0)
+        diastolic_bp = st.number_input("Diastolic Blood Pressure", min_value=0.0)
+
+    with col2:
+        cholesterol = st.number_input("Cholesterol", min_value=0.0)
+        heart_rate = st.number_input("Resting Heart Rate", min_value=0.0)
+
+    if st.button("Predict Heart Disease"):
+
+        input_data = [[
+            age,
+            bmi,
+            systolic_bp,
+            diastolic_bp,
+            cholesterol,
+            heart_rate
+        ]]
+
+        prediction = heart_model.predict(input_data)
+
+        st.markdown("---")
+
+        if prediction[0] == 1:
+            st.error("⚠️ High Risk of Heart Disease")
+        else:
+            st.success("✅ Low Risk of Heart Disease")
