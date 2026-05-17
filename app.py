@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # ==========================================
-# Page Configuration
+# PAGE CONFIGURATION
 # ==========================================
 
 st.set_page_config(
@@ -13,11 +13,7 @@ st.set_page_config(
 )
 
 # ==========================================
-# Load Models
-# ==========================================
-
-# ==========================================
-# Load Models
+# LOAD MODELS
 # ==========================================
 
 try:
@@ -28,11 +24,11 @@ try:
     heart_model = joblib.load("heart_model.pkl")
 
 except Exception as e:
-    st.write(e)
+    st.error(f"Model loading error: {e}")
     st.stop()
 
 # ==========================================
-# Sidebar
+# SIDEBAR
 # ==========================================
 
 st.sidebar.title("🩺 Disease Prediction System")
@@ -48,8 +44,9 @@ menu = st.sidebar.radio(
 )
 
 st.sidebar.markdown("---")
+
 st.sidebar.info(
-    "This project uses Machine Learning models to predict diseases based on medical inputs."
+    "This project uses Machine Learning models to predict diseases using medical data and user inputs."
 )
 
 # ==========================================
@@ -60,11 +57,14 @@ if menu == "🏠 Home":
 
     st.title("🩺 Multi Disease Prediction System")
 
-    st.markdown("## Machine Learning Based Healthcare Prediction Web Application")
+    st.markdown(
+        "## Machine Learning Based Healthcare Prediction Web Application"
+    )
 
-    st.caption("Made by Raunak • ML Enthusiast • Developed for Learning and Educational Purposes")
+    st.caption(
+        "Made by Raunak • ML Enthusiast • Developed for Learning and Educational Purposes"
+    )
 
-    # Main Image
     st.image("medical_banner.jpg", use_container_width=True)
 
     st.markdown("---")
@@ -74,19 +74,19 @@ if menu == "🏠 Home":
     with col1:
         st.success("### 🩸 Diabetes Prediction")
         st.write(
-            "Predict diabetes risk using medical parameters like glucose level, BMI, insulin, age and blood pressure."
+            "Predict diabetes risk using medical parameters like glucose level, BMI, insulin and age."
         )
 
     with col2:
         st.error("### 🎗️ Breast Cancer Prediction")
         st.write(
-            "Detect breast cancer risk using machine learning and important tumor measurement features."
+            "Predict breast cancer risk using tumor measurement features and machine learning."
         )
 
     with col3:
         st.warning("### ❤️ Heart Disease Prediction")
         st.write(
-            "Analyze heart disease risk using health indicators like blood pressure, cholesterol and lifestyle factors."
+            "Analyze heart disease risk using blood pressure, cholesterol and lifestyle related features."
         )
 
     st.markdown("---")
@@ -94,18 +94,23 @@ if menu == "🏠 Home":
     st.subheader("📌 About This Project")
 
     st.write(
-        "This project is developed using Python, Machine Learning and Streamlit. "
-        "The application predicts multiple diseases using trained ML models and user medical inputs."
+        """
+        This project is developed using Python, Machine Learning and Streamlit.
+
+        The application predicts multiple diseases using trained machine learning models and medical input data.
+        """
     )
 
     st.subheader("🛠️ Technologies Used")
 
     st.write(
-        "- Python\n"
-        "- Pandas\n"
-        "- Scikit-learn\n"
-        "- Streamlit\n"
-        "- Joblib"
+        """
+        - Python
+        - Pandas
+        - Scikit-learn
+        - Streamlit
+        - Joblib
+        """
     )
 
     st.subheader("📊 Machine Learning Models")
@@ -117,7 +122,7 @@ if menu == "🏠 Home":
             "Heart Disease"
         ],
         "Model Used": [
-            "K-Nearest Neighbors (KNN)",
+            "KNN",
             "Random Forest",
             "Random Forest"
         ],
@@ -132,7 +137,7 @@ if menu == "🏠 Home":
 
     st.markdown("---")
 
-    st.success("Developed using Machine Learning and Streamlit")
+    st.success("Project Successfully Running")
 
 # ==========================================
 # DIABETES PREDICTION
@@ -143,8 +148,11 @@ elif menu == "🩸 Diabetes Prediction":
     st.title("🩸 Diabetes Prediction")
 
     st.info(
-        "Diabetes is a chronic health condition that affects how the body converts food into energy. "
-        "This prediction system uses medical information to estimate diabetes risk."
+        """
+        Diabetes is a chronic disease that affects how the body processes blood sugar.
+
+        This model predicts diabetes risk using medical health parameters.
+        """
     )
 
     st.markdown("### 📊 Model Accuracy : 69.48%")
@@ -196,15 +204,16 @@ elif menu == "🎗️ Breast Cancer Prediction":
     st.title("🎗️ Breast Cancer Prediction")
 
     st.info(
-        "Breast cancer occurs when cells in the breast grow uncontrollably. "
-        "This ML model predicts whether the tumor condition is malignant or benign."
+        """
+        Breast cancer occurs when abnormal cells grow uncontrollably in breast tissue.
+
+        This model predicts whether the tumor is malignant or benign.
+        """
     )
 
     st.markdown("### 📊 Model Accuracy : 95.61%")
 
     st.markdown("---")
-
-    st.subheader("Enter Tumor Details")
 
     col1, col2 = st.columns(2)
 
@@ -219,19 +228,19 @@ elif menu == "🎗️ Breast Cancer Prediction":
 
     if st.button("Predict Breast Cancer"):
 
-       input_data = [[
-    radius_mean,
-    texture_mean,
-    perimeter_mean,
-    area_mean,
-    smoothness_mean,
+        input_data = [[
+            radius_mean,
+            texture_mean,
+            perimeter_mean,
+            area_mean,
+            smoothness_mean,
 
-    0,0,0,0,0,
-    0,0,0,0,0,
-    0,0,0,0,0,
-    0,0,0,0,0,
-    0,0,0,0,0
-]]
+            0,0,0,0,0,
+            0,0,0,0,0,
+            0,0,0,0,0,
+            0,0,0,0,0,
+            0,0,0,0,0
+        ]]
 
         prediction = breast_cancer_model.predict(input_data)
 
@@ -251,8 +260,11 @@ elif menu == "❤️ Heart Disease Prediction":
     st.title("❤️ Heart Disease Prediction")
 
     st.info(
-        "Heart disease includes several conditions that affect heart health. "
-        "This prediction model analyzes health indicators to estimate heart disease risk."
+        """
+        Heart disease includes various conditions affecting heart health.
+
+        This model predicts the possibility of heart disease risk using health indicators.
+        """
     )
 
     st.markdown("### 📊 Model Accuracy : 94.09%")
@@ -265,9 +277,9 @@ elif menu == "❤️ Heart Disease Prediction":
         age = st.number_input("Age", min_value=0.0)
         bmi = st.number_input("BMI", min_value=0.0)
         systolic_bp = st.number_input("Systolic Blood Pressure", min_value=0.0)
-        diastolic_bp = st.number_input("Diastolic Blood Pressure", min_value=0.0)
 
     with col2:
+        diastolic_bp = st.number_input("Diastolic Blood Pressure", min_value=0.0)
         cholesterol = st.number_input("Cholesterol", min_value=0.0)
         heart_rate = st.number_input("Resting Heart Rate", min_value=0.0)
 
@@ -279,7 +291,9 @@ elif menu == "❤️ Heart Disease Prediction":
             systolic_bp,
             diastolic_bp,
             cholesterol,
-            heart_rate
+            heart_rate,
+
+            0,0,0,0,0,0,0,0
         ]]
 
         prediction = heart_model.predict(input_data)
