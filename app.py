@@ -219,13 +219,19 @@ elif menu == "🎗️ Breast Cancer Prediction":
 
     if st.button("Predict Breast Cancer"):
 
-        input_data = [[
-            radius_mean,
-            texture_mean,
-            perimeter_mean,
-            area_mean,
-            smoothness_mean
-        ]]
+       input_data = [[
+    radius_mean,
+    texture_mean,
+    perimeter_mean,
+    area_mean,
+    smoothness_mean,
+
+    0,0,0,0,0,
+    0,0,0,0,0,
+    0,0,0,0,0,
+    0,0,0,0,0,
+    0,0,0,0,0
+]]
 
         prediction = breast_cancer_model.predict(input_data)
 
