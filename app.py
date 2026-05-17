@@ -16,14 +16,19 @@ st.set_page_config(
 # Load Models
 # ==========================================
 
+# ==========================================
+# Load Models
+# ==========================================
+
 try:
-    diabetes_model = joblib.load("models/diabetes_model.pkl")
-    
-    breast_cancer_model = joblib.load("models/breast_cancer_model.pkl")
-    heart_model = joblib.load("models/heart_model.pkl")
+    diabetes_model = joblib.load("diabetes_model.pkl")
+
+    breast_cancer_model = joblib.load("breast_cancer_model.pkl")
+
+    heart_model = joblib.load("heart_model.pkl")
 
 except Exception as e:
-    st.error(f"Model loading error: {e}")
+    st.write(e)
     st.stop()
 
 # ==========================================
