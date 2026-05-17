@@ -18,14 +18,13 @@ st.set_page_config(
 
 try:
     diabetes_model = joblib.load("models/diabetes_model.pkl")
-    diabetes_scaler = joblib.load("models/diabetes_scaler.pkl")
-
+    
     breast_cancer_model = joblib.load("models/breast_cancer_model.pkl")
-
     heart_model = joblib.load("models/heart_model.pkl")
 
-except:
-    st.error("Model files not found. Please check models folder.")
+except Exception as e:
+    st.error(f"Model loading error: {e}")
+    st.stop()
 
 # ==========================================
 # Sidebar
@@ -174,9 +173,7 @@ elif menu == "🩸 Diabetes Prediction":
             age
         ]]
 
-        scaled_data = diabetes_scaler.transform(input_data)
-
-        prediction = diabetes_model.predict(scaled_data)
+        prediction = diabetes_model.predict(input_data)
 
         st.markdown("---")
 
